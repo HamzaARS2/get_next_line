@@ -6,7 +6,7 @@
 /*   By: helarras <helarras@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:12:40 by helarras          #+#    #+#             */
-/*   Updated: 2024/01/19 21:06:13 by helarras         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:40:08 by helarras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*remaining;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 ||read(fd, 0, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 		return (sclear(&s));
 	if (!readnext(fd, &s))
 		return (0);

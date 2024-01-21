@@ -6,11 +6,11 @@
 /*   By: helarras <helarras@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:12:40 by helarras          #+#    #+#             */
-/*   Updated: 2024/01/19 22:04:54 by helarras         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:49:27 by helarras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*readline(char **s, char **line)
 {
@@ -90,18 +90,17 @@ char	*update_s(char **s, char *remaining)
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
+	static char	*s[OPEN_MAX];
 	char		*line;
 	char		*remaining;
-	
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
-		return (sclear(&s));
-	if (!readnext(fd, &s))
+		return (sclear(&(s[fd])));
+	if (!readnext(fd, &(s[fd])))
 		return (0);
-	remaining = readline(&s, &line);
+	remaining = readline(&(s[fd]), &line);
 	if (!remaining)
 		return (0);
-	update_s(&s, remaining);
+	update_s(&(s[fd]), remaining);
 	return (line);
 }
